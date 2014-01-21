@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
   s.description = "Go-lang style channels in ruby"
   s.authors     = ["Matthew Wastrodowski"]
   s.email       = 'towski@gmail.com'
-  s.files       = ["lib/channel.rb", "lib/channels.rb"]
+  s.files       = ["lib/channel.rb", "lib/channels.rb", "lib/main_channel.rb"]
   s.homepage    =
     'http://rubygems.org/gems/channels'
   s.license       = 'MIT'

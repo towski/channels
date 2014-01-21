@@ -19,7 +19,7 @@ channel.write "I watched c-beams glitter in the dark near the Tannhauser Gate."
 sleep 4
 channel.write "All those... moments... will be lost in time, like... *cough*"
 sleep 5
-channel.write "tears... in... rain. 
+channel.write "tears... in... rain."
 sleep 2
 channel.write "Time... to die..."
 sleep 2

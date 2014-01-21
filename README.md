@@ -1,12 +1,10 @@
-Implement Go style channels ruby, asynchronous threads that can pass messages through
-a blocking channel.
+Implement Go style channels ruby, asynchronous threads that can pass messages through a blocking channel.
 
-In the following example, each separate channel is writing to a main channel
-whenever it receives a response, and the main channel pops the responses off
-as soon as it receives them. 
+In the following example, each separate channel is writing to a main channel whenever it receives a response, and the main channel pops the responses off as soon as it receives them. 
 
 See Rob Pike's go talk: http://www.youtube.com/watch?v=f6kdp27TYZs
 
+```ruby
 require_relative 'channel'
 require 'net/http'
 
@@ -26,3 +24,4 @@ Channel.new do |main|
 end
 
 sleep
+```

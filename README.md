@@ -1,7 +1,5 @@
 Implement Go style channels in ruby, asynchronous threads that can pass messages through a blocking channel.
 
-In the following example, each separate channel is writing to a main channel whenever it receives a response, and the main channel pops the responses off as soon as it receives them. 
-
 See Rob Pike's go talk: http://www.youtube.com/watch?v=f6kdp27TYZs
 
 Simple example: 
@@ -25,7 +23,8 @@ channel.write "Time... to die..."
 sleep 2
 ```
 
-More complicated example:
+In the following example, each separate channel is writing to a main channel whenever it receives a response, and the main channel pops the responses off as soon as it receives them. 
+
 
 ```ruby
 require 'channel'

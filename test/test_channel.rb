@@ -1,7 +1,25 @@
 require 'test/unit'
-require 'channel'
-require 'test_helper'
+require_relative 'test_helper'
+require_relative '../lib/channel'
 require 'ruby-debug'
+
+class ErnieChannel < Channel
+end
+
+class CosbyChannel < Channel
+  SAYINGS = ["Bipping", "Bopping"]
+  def run
+    loop do
+      self.write SAYINGS.sample
+    end
+  end
+end
+
+class MainChannel < Channel
+  attr_accessor :test_done
+  def run
+  end
+end
 
 class ChannelTest < Test::Unit::TestCase
   def test_channel
@@ -71,5 +89,16 @@ class ChannelTest < Test::Unit::TestCase
     end
     right.write(1)
     assert_equal 1001, leftmost.read
+  end
+
+  def test_needs_run_with_inheritance
+    assert_raises(RuntimeError) {
+      ernie = ErnieChannel.new
+    }
+  end
+
+  def test_inheritance
+    cosby = CosbyChannel.new
+    assert CosbyChannel::SAYINGS.include?(cosby.read)
   end
 end

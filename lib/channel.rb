@@ -8,6 +8,7 @@ class Channel
     @mutex = Mutex.new
     @sender = nil
     @value = []
+    @subchannels = {}
     @write_mutex = Mutex.new
     if block_given? 
       @thread = new_thread { yield self }
@@ -64,8 +65,26 @@ class Channel
     }
   end
 
-
   def kill
     @thread.kill
+  end
+
+  def add_subchannel(channel, &block)
+    @subchannels[channel] = block
+  end
+
+  def remove_subchannel(channel)
+    channel.kill
+    @subchannels[channel] = nil
+  end
+
+  def process
+    result = self.read
+    function = @subchannels[self.sender]
+    begin
+      instance_exec result, self.sender, &function
+    rescue => e
+      puts "got an error #{e.inspect}"
+    end
   end
 end

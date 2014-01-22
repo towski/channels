@@ -42,3 +42,28 @@ end
 
 sleep
 ```
+
+This can be simplified by using subchannels.
+
+```ruby
+class Display < Channel
+  def run
+    # display loop
+  end
+end
+
+class Main < Channel
+  def initialize
+    @display = Display.new
+    # handle any messages from the display channel
+    add_subchannel(@display){|response, sender|
+      if response == "quit"
+        puts "it's ova"
+        exit
+      end
+    }
+  end
+end
+```
+
+See https://github.com/towski/dwarf for more examples

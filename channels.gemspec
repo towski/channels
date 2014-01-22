@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'channels'
-  s.version     = '0.0.3'
+  s.version     = '0.0.4'
   s.date        = '2012-01-20'
   s.summary     = "Channels"
   s.description = "Go-lang style channels in ruby"

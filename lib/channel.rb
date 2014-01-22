@@ -1,10 +1,10 @@
 class Channel
-  attr_reader :thread, :sender, :channel_out
+  attr_reader :thread, :sender 
+  attr_accessor :channel_out
 
   def initialize(*params, &block)
     @writing_thread = nil
     @reading_thread = nil
-    @channel_out = params.last || self
     @mutex = Mutex.new
     @sender = nil
     @value = []
@@ -46,7 +46,7 @@ class Channel
   end
 
   def write_out(value)
-    @channel_out.write(value, self)
+    (@channel_out || self).write(value, self)
   end
 
   def read
@@ -70,6 +70,7 @@ class Channel
   end
 
   def add_subchannel(channel, &block)
+    channel.channel_out = self
     @subchannels[channel] = block
   end
 

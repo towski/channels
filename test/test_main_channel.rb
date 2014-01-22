@@ -18,14 +18,14 @@ class CosbyChannel < Channel
 end
 
 class MainChannelTest < Test::Unit::TestCase
-  def test_listeners
+  def test_subchannels
     this_thread = Thread.current
     channel = Main.new
-    channel.add_subchannel(CosbyChannel.new(channel)){ |result|
+    channel.add_subchannel(CosbyChannel.new){ |result|
       if result == "Bipping"
-        @channel_out.test_done = true
+        self.test_done = true
       else
-        @channel_out.test_done = true
+        self.test_done = true
       end
       this_thread.wakeup
     }
